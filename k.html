@@ -1,229 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Final Wedding Experience</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Wedding Experience</title>
 
 <style>
 body{
- margin:0;
- font-family:Arial;
- background:linear-gradient(135deg,#0a0e27,#1b1f3a);
- color:white;
- overflow-x:hidden;
+margin:0;
+font-family:Arial;
+background:#0a0e27;
+color:white;
 }
 
+/* LOADER */
+#loader{
+position:fixed;
+inset:0;
+background:#000;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+.spinner{
+width:50px;height:50px;
+border:4px solid #333;
+border-top:4px solid gold;
+border-radius:50%;
+animation:spin 1s linear infinite;
+}
+@keyframes spin{100%{transform:rotate(360deg)}}
+
+/* HEADER */
 header{
- text-align:center;
- padding:15px;
- font-size:24px;
- color:gold;
+padding:15px;
+text-align:center;
+font-size:22px;
+color:gold;
 }
 
-.card{
- background:rgba(255,255,255,0.07);
- margin:15px;
- padding:15px;
- border-radius:15px;
- backdrop-filter:blur(10px);
+/* TOP BAR */
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:10px 15px;
+background:#111;
+position:sticky;
+top:0;
 }
 
 button{
- padding:10px 15px;
- margin:5px;
- border:none;
- border-radius:10px;
- cursor:pointer;
- background:gold;
- font-weight:bold;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:gold;
+font-weight:bold;
+}
+
+/* CARD */
+.card{
+margin:15px;
+padding:15px;
+background:rgba(255,255,255,0.06);
+border-radius:12px;
+backdrop-filter:blur(10px);
 }
 
 /* RSVP */
 #rsvp{
- display:none;
- position:fixed;
- inset:0;
- background:rgba(0,0,0,0.8);
- justify-content:center;
- align-items:center;
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
 }
-
 .box{
- background:#111;
- padding:20px;
- border-radius:15px;
- width:300px;
+background:#111;
+padding:20px;
+border-radius:12px;
+width:280px;
 }
-
 input{
- width:100%;
- padding:8px;
- margin:5px 0;
- border-radius:8px;
- border:none;
-}
-
-/* LOVE */
-.bar{
- height:15px;
- background:#222;
- border-radius:10px;
- overflow:hidden;
-}
-.fill{
- height:100%;
- width:0%;
- background:linear-gradient(90deg,pink,orange,gold);
- transition:0.5s;
+width:100%;
+margin:5px 0;
+padding:8px;
+border-radius:6px;
+border:none;
 }
 
 /* CONFETTI */
 .confetti{
- position:fixed;
- font-size:20px;
- animation:fall 3s linear forwards;
+position:fixed;
+font-size:18px;
+animation:fall 3s linear forwards;
 }
 @keyframes fall{
- to{transform:translateY(100vh);opacity:0;}
+to{transform:translateY(100vh);opacity:0;}
 }
 
+/* RESPONSIVE */
 @media(max-width:768px){
- header{font-size:18px;}
+header{font-size:18px;}
 }
 </style>
 </head>
 
 <body>
 
-<header id="title">💍 Sneha & Kishan Wedding</header>
-
-<div class="card">
-<h3>🌐 Language</h3>
-<button onclick="lang('en')">English</button>
-<button onclick="lang('hi')">हिंदी</button>
+<!-- LOADER -->
+<div id="loader">
+<div class="spinner"></div>
+<p id="loadText">Loading...</p>
 </div>
 
+<!-- TOP BAR -->
+<div class="topbar">
+<div id="title">💍 Wedding</div>
+
+<div>
+<button onclick="setLang('en')">EN</button>
+<button onclick="setLang('hi')">HI</button>
+</div>
+</div>
+
+<header id="mainTitle">Wedding of Sneha & Kishan 💍</header>
+
 <div class="card">
-<h3>💖 Love Meter</h3>
-<div class="bar"><div class="fill" id="love"></div></div>
-<button onclick="addLove()">Increase Love</button>
+<h3 id="welcome">Welcome</h3>
+<p id="desc">Join the celebration of love 💖</p>
 </div>
 
 <div class="card">
 <h3>🎉 RSVP</h3>
-<button onclick="openRSVP()">Open RSVP</button>
+<button onclick="openRSVP()" id="rsvpBtn">Open RSVP</button>
 </div>
 
 <div class="card">
-<h3>📥 Wedding Card Download</h3>
-<button onclick="downloadCard()">Download Card (PNG)</button>
-</div>
-
-<div class="card">
-<h3>🤖 Mini Chatbot</h3>
-<input id="chat" placeholder="Ask something..." onkeydown="bot(event)">
-<p id="reply"></p>
+<h3>💥 Surprise</h3>
+<button onclick="celebrate()" id="celebrateBtn">Celebrate</button>
 </div>
 
 <!-- RSVP -->
 <div id="rsvp">
- <div class="box">
-  <h3>RSVP Form</h3>
-  <input id="name" placeholder="Name">
-  <input id="email" placeholder="Email">
-  <input id="guests" placeholder="Guests">
-
-  <button onclick="submit()">Submit</button>
-  <button onclick="closeRSVP()">Close</button>
- </div>
+<div class="box">
+<h3 id="formTitle">RSVP Form</h3>
+<input id="name" placeholder="Name">
+<input id="email" placeholder="Email">
+<button onclick="submitRSVP()" id="submitBtn">Submit</button>
+<button onclick="closeRSVP()" id="closeBtn">Close</button>
+</div>
 </div>
 
 <script>
 
-let love=0;
+let lang="en";
 
-/* LANGUAGE */
-function lang(l){
- if(l==="hi"){
-  document.getElementById("title").innerText="💍 Sneha aur Kishan ki Shaadi";
- } else {
-  document.getElementById("title").innerText="💍 Sneha & Kishan Wedding";
- }
+/* TEXT SYSTEM */
+const TEXT={
+en:{
+title:"Wedding of Sneha & Kishan 💍",
+welcome:"Welcome",
+desc:"Join the celebration of love 💖",
+rsvp:"Open RSVP",
+celebrate:"Celebrate",
+form:"RSVP Form",
+submit:"Submit",
+close:"Close",
+loading:"Loading..."
+},
+hi:{
+title:"Sneha aur Kishan ki Shaadi 💍",
+welcome:"स्वागत है",
+desc:"प्यार के जश्न में शामिल हों 💖",
+rsvp:"RSVP खोलें",
+celebrate:"जश्न मनाएं",
+form:"RSVP फॉर्म",
+submit:"सबमिट करें",
+close:"बंद करें",
+loading:"लोड हो रहा है..."
+}
 }
 
-/* LOVE */
-function addLove(){
- love+=10;
- if(love>100) love=100;
- document.getElementById("love").style.width=love+"%";
+/* LOADER */
+window.onload=()=>{
+setTimeout(()=>{
+document.getElementById("loader").style.display="none";
+applyLang();
+},1500);
+}
+
+/* LANGUAGE SWITCH */
+function setLang(l){
+lang=l;
+applyLang();
+}
+
+function applyLang(){
+let t=TEXT[lang];
+
+document.getElementById("mainTitle").innerText=t.title;
+document.getElementById("welcome").innerText=t.welcome;
+document.getElementById("desc").innerText=t.desc;
+document.getElementById("rsvpBtn").innerText=t.rsvp;
+document.getElementById("celebrateBtn").innerText=t.celebrate;
+document.getElementById("formTitle").innerText=t.form;
+document.getElementById("submitBtn").innerText=t.submit;
+document.getElementById("closeBtn").innerText=t.close;
+document.getElementById("loadText").innerText=t.loading;
 }
 
 /* RSVP */
 function openRSVP(){
- document.getElementById("rsvp").style.display="flex";
+document.getElementById("rsvp").style.display="flex";
 }
 
 function closeRSVP(){
- document.getElementById("rsvp").style.display="none";
+document.getElementById("rsvp").style.display="none";
 }
 
-function submit(){
- let n=document.getElementById("name").value;
- if(!n){alert("Enter name");return;}
- closeRSVP();
- alert("RSVP Done 💍");
- confetti();
+function submitRSVP(){
+if(!document.getElementById("name").value){
+alert(lang==="en"?"Enter name":"नाम डालो");
+return;
 }
-
-/* CHATBOT */
-function bot(e){
- if(e.key==="Enter"){
-  let v=e.target.value.toLowerCase();
-  let r="Nice ❤️";
-
-  if(v.includes("who")) r="Sneha & Kishan Wedding 💍";
-  if(v.includes("hi")) r="Hello ❤️ Welcome!";
-
-  document.getElementById("reply").innerText=r;
- }
-}
-
-/* DOWNLOAD WEDDING CARD (CANVAS IMAGE) */
-function downloadCard(){
- let c=document.createElement("canvas");
- c.width=800; c.height=500;
- let x=c.getContext("2d");
-
- x.fillStyle="#0a0e27";
- x.fillRect(0,0,800,500);
-
- x.fillStyle="gold";
- x.font="30px Arial";
- x.fillText("💍 Wedding Invitation 💍",200,120);
-
- x.fillStyle="white";
- x.font="20px Arial";
- x.fillText("Sneha & Kishan",300,200);
- x.fillText("You are Invited ❤️",300,250);
- x.fillText("Date: 25 April",300,300);
-
- let a=document.createElement("a");
- a.download="wedding_card.png";
- a.href=c.toDataURL();
- a.click();
+closeRSVP();
+celebrate();
 }
 
 /* CONFETTI */
-function confetti(){
- for(let i=0;i<40;i++){
-  let d=document.createElement("div");
-  d.className="confetti";
-  d.innerHTML="🎉";
-  d.style.left=Math.random()*100+"vw";
-  document.body.appendChild(d);
-  setTimeout(()=>d.remove(),3000);
- }
+function celebrate(){
+for(let i=0;i<40;i++){
+let d=document.createElement("div");
+d.className="confetti";
+d.innerHTML="🎉";
+d.style.left=Math.random()*100+"vw";
+d.style.top="-10px";
+document.body.appendChild(d);
+setTimeout(()=>d.remove(),3000);
+}
 }
 
 </script>
