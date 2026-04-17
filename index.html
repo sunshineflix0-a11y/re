@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sneha ❤️ Kishan Wedding</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+canvas { position: fixed; top:0; left:0; z-index:-1; }
+
+/* LOADER */
+#loader {
+  position: fixed;
+  width: 100%; height: 100%;
+  background: black;
+  display:flex; justify-content:center; align-items:center;
+  z-index:9999;
+  font-size:2rem;
+  letter-spacing:3px;
+}
+
+.hero {
+  height: 100vh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center;
+}
+
+h1 {
+  font-family:'Playfair Display', serif;
+  font-size:4.5rem;
+  background: linear-gradient(to right,gold,white);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.btn {
+  margin-top:20px;
+  padding:12px 30px;
+  border:none;
+  background:gold;
+  border-radius:30px;
+  cursor:pointer;
+}
+
+section { padding:100px 20px; text-align:center; }
+
+.card {
+  background:rgba(255,255,255,0.1);
+  padding:20px;
+  border-radius:20px;
+  display:inline-block;
+  margin:10px;
+}
+
+.gallery img {
+  width:250px;
+  border-radius:15px;
+  margin:10px;
+}
+
+#countdown { font-size:2rem; }
+
+/* Chatbot */
+#chatbot {
+  position:fixed;
+  bottom:20px; right:20px;
+}
+
+#chatbox {
+  display:none;
+  background:#111;
+  padding:15px;
+  border-radius:10px;
+  width:250px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="loader">Loading Love Story... 💖</div>
+
+<canvas id="bg"></canvas>
+
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+</audio>
+
+<div class="hero">
+  <h1>Sneha ❤️ Kishan</h1>
+  <p>Forever begins now 💍</p>
+  <button class="btn" onclick="startExperience()">Enter</button>
+</div>
+
+<section>
+  <h2>Our Story</h2>
+  <p>From a beautiful beginning to a lifetime together ✨</p>
+</section>
+
+<section>
+  <h2>Gallery</h2>
+  <div class="gallery">
+    <img src="https://source.unsplash.com/400x400/?couple,love" />
+    <img src="https://source.unsplash.com/401x400/?romantic" />
+    <img src="https://source.unsplash.com/402x400/?wedding" />
+  </div>
+</section>
+
+<section>
+  <h2>Events</h2>
+  <div class="card">🌼 Haldi - 24 April</div>
+  <div class="card">🎨 Mehendi - 24 April</div>
+  <div class="card">💍 Wedding - 25 April</div>
+</section>
+
+<section>
+  <h2>Countdown</h2>
+  <p id="countdown"></p>
+</section>
+
+<section>
+  <h2>🎁 Surprise</h2>
+  <button class="btn" onclick="alert('We love you ❤️')">Unlock</button>
+</section>
+
+<!-- Chatbot -->
+<div id="chatbot">
+  <button class="btn" onclick="toggleChat()">💬</button>
+  <div id="chatbox">
+    <p><b>Ask:</b> date / venue</p>
+    <input id="userInput" placeholder="Ask..." />
+    <button onclick="reply()">Send</button>
+    <p id="botReply"></p>
+  </div>
+</div>
+
+<script>
+// Loader
+window.onload = ()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').style.display='none';
+  },2000);
+}
+
+// Music
+function startExperience(){
+  document.getElementById('music').play();
+  window.scrollTo({top:window.innerHeight,behavior:'smooth'});
+}
+
+// Countdown
+const weddingDate = new Date("Apr 25, 2026 00:00:00").getTime();
+setInterval(()=>{
+  let now = new Date().getTime();
+  let d = weddingDate - now;
+  let days = Math.floor(d/(1000*60*60*24));
+  let h = Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  let m = Math.floor((d%(1000*60*60))/(1000*60));
+  let s = Math.floor((d%(1000*60))/1000);
+  document.getElementById("countdown").innerHTML = `${days}d ${h}h ${m}m ${s}s`;
+},1000);
+
+// Chatbot
+function toggleChat(){
+  let box = document.getElementById('chatbox');
+  box.style.display = box.style.display === 'block' ? 'none' : 'block';
+}
+
+function reply(){
+  let input = document.getElementById('userInput').value.toLowerCase();
+  let reply = "Ask about wedding 😊";
+
+  if(input.includes('date')) reply = "Wedding: 25 April";
+  if(input.includes('haldi')) reply = "Haldi: 24 April";
+  if(input.includes('mehendi')) reply = "Mehendi: 24 April";
+
+  document.getElementById('botReply').innerText = reply;
+}
+
+// 3D Rings
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('bg')});
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+const geo = new THREE.TorusGeometry(10,2,16,100);
+const mat = new THREE.MeshStandardMaterial({color:0xffd700});
+const ring1 = new THREE.Mesh(geo,mat);
+const ring2 = new THREE.Mesh(geo,mat);
+ring2.position.x = 15;
+scene.add(ring1, ring2);
+
+const light = new THREE.PointLight(0xffffff,1);
+light.position.set(20,20,20);
+scene.add(light);
+
+camera.position.z = 40;
+
+function animate(){
+  requestAnimationFrame(animate);
+  ring1.rotation.x += 0.01;
+  ring2.rotation.y += 0.01;
+  renderer.render(scene,camera);
+}
+animate();
+
+// Animations
+gsap.from("h1", {y:-100, opacity:0});
+gsap.from("section", {opacity:0, y:50, stagger:0.3});
+
+</script>
+
+</body>
+</html>
