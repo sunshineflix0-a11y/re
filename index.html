@@ -1,156 +1,2656 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sneha ❤️ Kishan Wedding</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneha ❤️ Kishan - Premium Wedding Experience 2026</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CDN Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+        :root {
+            --gold: #d4af37;
+            --dark: #0a0e27;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --accent: #ff6b9d;
+            --secondary: #ff1493;
+        }
 
-<style>
-body { margin:0; font-family:'Poppins'; background:black; color:white; overflow-x:hidden; }
-canvas { position:fixed; top:0; left:0; z-index:-1; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-#loader { position:fixed; width:100%; height:100%; background:black; display:flex; justify-content:center; align-items:center; z-index:9999; font-size:2rem; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1f3a 50%, #0f1629 100%);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+            background-attachment: fixed;
+        }
 
-.hero { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+        /* ============ PARTICLE BACKGROUND ============ */
+        .particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-h1 { font-family:'Playfair Display'; font-size:4rem; background:linear-gradient(gold,white); -webkit-background-clip:text; color:transparent; }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 20s infinite;
+        }
 
-.btn { padding:10px 25px; background:gold; border:none; border-radius:25px; cursor:pointer; margin:10px; }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-section { padding:80px 20px; text-align:center; }
+        /* ============ LOADER ============ */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1f3a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 0.8s ease-in-out 3s forwards;
+        }
 
-.card { background:rgba(255,255,255,0.1); padding:15px; border-radius:15px; margin:10px; display:inline-block; }
+        .loader-content {
+            text-align: center;
+        }
 
-#countdown { font-size:2rem; }
+        .loader-ring {
+            width: 100px;
+            height: 100px;
+            border: 4px solid transparent;
+            border-top: 4px solid var(--gold);
+            border-right: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
 
-.game-box { margin-top:20px; }
+        .loader-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: var(--gold);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
 
-</style>
+        .loader-subtext {
+            color: var(--gold);
+            opacity: 0.7;
+            font-size: 1em;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        /* ============ HEADER & NAVIGATION ============ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(15px);
+            background: rgba(10, 14, 39, 0.8);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5em 2em;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+            50% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2em;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--accent));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 1em;
+        }
+
+        .music-toggle, .rsvp-btn {
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.8em 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .music-toggle:hover, .rsvp-btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1em;
+                flex-wrap: wrap;
+                gap: 1em;
+            }
+
+            .nav-links {
+                gap: 0.8em;
+                font-size: 0.8em;
+                order: 3;
+                width: 100%;
+            }
+
+            .header-buttons {
+                gap: 0.5em;
+                font-size: 0.8em;
+            }
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .three-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            animation: slideInUp 1s ease-out 0.5s both;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5em;
+            font-weight: 900;
+            margin-bottom: 0.3em;
+            background: linear-gradient(135deg, var(--gold), var(--accent), var(--gold));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            letter-spacing: 2px;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5em;
+            color: var(--light-gray);
+            margin-bottom: 0.5em;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .hero-tagline {
+            font-size: 1.1em;
+            color: var(--accent);
+            margin-bottom: 2em;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 1.5em;
+            margin-top: 3em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .countdown-item {
+            background: rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            padding: 2em 1em;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: left 0.8s;
+        }
+
+        .countdown-item:hover::before {
+            left: 100%;
+        }
+
+        .countdown-item:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .countdown-number {
+            font-size: 3em;
+            font-weight: 900;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .countdown-label {
+            font-size: 0.8em;
+            color: var(--light-gray);
+            margin-top: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3em;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1em;
+            }
+
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1em;
+            }
+
+            .countdown-number {
+                font-size: 2em;
+            }
+        }
+
+        /* ============ SECTIONS ============ */
+        section {
+            padding: 5em 2em;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin-bottom: 1.5em;
+            text-align: center;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            padding-bottom: 1em;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        /* ============ STORY SECTION ============ */
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3em;
+            align-items: center;
+            margin-top: 3em;
+        }
+
+        .story-text {
+            font-size: 1.1em;
+            line-height: 1.9;
+            color: var(--light-gray);
+        }
+
+        .story-text h3 {
+            color: var(--gold);
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+        }
+
+        .story-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            height: 450px;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .story-image:hover img {
+            transform: scale(1.08) rotate(1deg);
+        }
+
+        @media (max-width: 768px) {
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 2em;
+            }
+
+            .story-image {
+                height: 350px;
+            }
+        }
+
+        /* ============ EVENT CARDS ============ */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5em;
+            margin-top: 3em;
+        }
+
+        .event-card {
+            background: rgba(212, 175, 55, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 25px;
+            padding: 2.5em;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            transition: left 0.6s;
+        }
+
+        .event-card:hover::before {
+            left: 100%;
+        }
+
+        .event-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.25);
+        }
+
+        .event-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: var(--gold);
+            margin-bottom: 0.8em;
+        }
+
+        .event-date {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 1em;
+            font-size: 1.1em;
+        }
+
+        .event-details {
+            color: var(--light-gray);
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        /* ============ GALLERY ============ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2em;
+            margin-top: 3em;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            height: 350px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2) rotate(2deg);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* ============ TESTIMONIALS ============ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5em;
+            margin-top: 3em;
+        }
+
+        .testimonial-card {
+            background: rgba(212, 175, 55, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 2em;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.12);
+        }
+
+        .testimonial-stars {
+            color: var(--gold);
+            font-size: 1.2em;
+            margin-bottom: 1em;
+        }
+
+        .testimonial-text {
+            color: var(--light-gray);
+            margin-bottom: 1em;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ============ GAMES SECTION ============ */
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5em;
+            margin-top: 3em;
+        }
+
+        .game-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 107, 157, 0.05));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 25px;
+            padding: 2.5em;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: float-bg 6s ease-in-out infinite;
+        }
+
+        @keyframes float-bg {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+        }
+
+        .game-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--gold);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(255, 107, 157, 0.12));
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .game-icon {
+            font-size: 3.5em;
+            margin-bottom: 1em;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .game-card:hover .game-icon {
+            animation: spin 0.6s ease-in-out;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .game-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7em;
+            color: var(--gold);
+            margin-bottom: 0.8em;
+            position: relative;
+            z-index: 2;
+        }
+
+        .game-desc {
+            color: var(--light-gray);
+            font-size: 0.95em;
+            margin-bottom: 1.5em;
+            position: relative;
+            z-index: 2;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            color: var(--dark);
+            border: none;
+            padding: 1em 2em;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95em;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .play-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* ============ MODAL ============ */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.98), rgba(26, 31, 58, 0.98));
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 35px;
+            padding: 3.5em;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-60px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(255, 107, 157, 0.3));
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .modal-close:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: rotate(90deg);
+        }
+
+        /* ============ CHATBOT ============ */
+        .chatbot-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            z-index: 500;
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.5);
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s;
+            border: 3px solid var(--white);
+        }
+
+        .chatbot-icon:hover {
+            transform: scale(1.15);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.7);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            width: 420px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(10, 14, 39, 0.98), rgba(26, 31, 58, 0.98));
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 30px;
+            display: none;
+            flex-direction: column;
+            z-index: 501;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            color: var(--dark);
+            padding: 1.8em;
+            border-radius: 30px 30px 0 0;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-close-btn {
+            background: rgba(10, 14, 39, 0.3);
+            border: none;
+            color: var(--dark);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .chatbot-close-btn:hover {
+            background: rgba(10, 14, 39, 0.6);
+            transform: rotate(90deg);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5em;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2em;
+        }
+
+        .message {
+            display: flex;
+            gap: 0.8em;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            max-width: 85%;
+            padding: 1em 1.3em;
+            border-radius: 18px;
+            line-height: 1.6;
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .message-bubble.user {
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .message-bubble.bot {
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--white);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            align-items: flex-end;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-12px); }
+        }
+
+        .chatbot-input {
+            display: flex;
+            gap: 0.8em;
+            padding: 1.5em;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1.5px solid rgba(212, 175, 55, 0.3);
+            color: var(--white);
+            padding: 0.9em 1.2em;
+            border-radius: 25px;
+            outline: none;
+            font-family: inherit;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+
+        .chatbot-input input:focus {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .chatbot-input button {
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            color: var(--dark);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-size: 1.2em;
+        }
+
+        .chatbot-input button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        /* ============ RSVP MODAL ============ */
+        .rsvp-form {
+            display: grid;
+            gap: 1.5em;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: var(--gold);
+            margin-bottom: 0.5em;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1.5px solid rgba(212, 175, 55, 0.3);
+            color: var(--white);
+            padding: 1em;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1em;
+            margin-top: 1em;
+        }
+
+        .submit-btn {
+            flex: 1;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            color: var(--dark);
+            border: none;
+            padding: 1.2em;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .cancel-btn {
+            flex: 1;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            padding: 1.2em;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .cancel-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        /* ============ WISH SECTION ============ */
+        .wish-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
+            margin-top: 3em;
+        }
+
+        .wish-card {
+            background: rgba(212, 175, 55, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 2em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wish-card::before {
+            content: '💝';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 4em;
+            opacity: 0.1;
+        }
+
+        .wish-author {
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.5em;
+        }
+
+        .wish-text {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* ============ SURPRISE SECTION ============ */
+        .surprise-container {
+            text-align: center;
+            padding: 4em 2em;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 107, 157, 0.05));
+            border: 3px dashed rgba(212, 175, 55, 0.4);
+            border-radius: 30px;
+            margin-top: 3em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .surprise-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: float-bg 8s ease-in-out infinite;
+        }
+
+        .surprise-content {
+            position: relative;
+            z-index: 2;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .surprise-hidden {
+            display: block;
+        }
+
+        .surprise-hidden.hidden {
+            display: none;
+        }
+
+        .surprise-revealed {
+            display: none;
+            animation: revealAnimation 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .surprise-revealed.visible {
+            display: block;
+        }
+
+        @keyframes revealAnimation {
+            from {
+                opacity: 0;
+                transform: scale(0.5) rotateY(180deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateY(0);
+            }
+        }
+
+        .surprise-message {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: var(--gold);
+            line-height: 1.8;
+            margin-bottom: 2em;
+            animation: textPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes textPulse {
+            0%, 100% { text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+            50% { text-shadow: 0 0 25px rgba(212, 175, 55, 0.6); }
+        }
+
+        .surprise-subtext {
+            color: var(--light-gray);
+            font-size: 1.2em;
+            margin-bottom: 2em;
+        }
+
+        .surprise-btn {
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            color: var(--dark);
+            border: none;
+            padding: 1.2em 3em;
+            border-radius: 35px;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: rgba(10, 14, 39, 0.6);
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 3em 2em;
+            text-align: center;
+            color: var(--light-gray);
+            position: relative;
+            z-index: 5;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5em;
+            margin-bottom: 2em;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-text {
+            font-size: 0.95em;
+            margin-bottom: 1em;
+        }
+
+        /* ============ LIGHTBOX ============ */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.97);
+            z-index: 800;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            padding: 2em;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            height: 90vh;
+            max-height: 700px;
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-size: 2.5em;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .lightbox-close:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: -80px;
+        }
+
+        .lightbox-next {
+            right: -80px;
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-prev, .lightbox-next {
+                position: relative;
+                left: auto;
+                right: auto;
+                margin: 0 1em;
+                top: auto;
+                transform: none;
+            }
+
+            .lightbox-nav:hover {
+                transform: scale(1.05);
+            }
+
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        /* ============ NOTIFICATION ============ */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--gold), var(--accent));
+            color: var(--dark);
+            padding: 1.5em 2em;
+            border-radius: 15px;
+            z-index: 2000;
+            animation: slideInLeft 0.4s ease-out, slideOutLeft 0.4s ease-out 2.6s forwards;
+            font-weight: 600;
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOutLeft {
+            to {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+        }
+
+        /* ============ UTILITY ============ */
+        .hidden {
+            display: none !important;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--gold), var(--accent));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--accent), var(--gold));
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 3em 1.5em;
+            }
+
+            .section-title {
+                font-size: 2.5em;
+            }
+
+            .chatbot-window {
+                width: 95vw;
+                height: 80vh;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: auto;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- PARTICLE BACKGROUND -->
+    <div class="particle-container" id="particleContainer"></div>
 
-<div id="loader">Loading Love Story... 💖</div>
-<canvas id="bg"></canvas>
+    <!-- LOADER -->
+    <div class="loader-container">
+        <div class="loader-content">
+            <div class="loader-ring"></div>
+            <div class="loader-text">✨ Loading Love Story ✨</div>
+            <div class="loader-subtext">A moment of magic awaits...</div>
+        </div>
+    </div>
 
-<audio id="music" loop>
-<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
-</audio>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">💍 Sneha ❤️ Kishan</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#story">Story</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#wishes">Wishes</a></li>
+            </ul>
+            <div class="header-buttons">
+                <button class="music-toggle" id="musicToggle">🔊 Music</button>
+                <button class="rsvp-btn" onclick="openRSVP()">RSVP Now</button>
+            </div>
+        </nav>
+    </header>
 
-<div class="hero">
-<h1>Sneha ❤️ Kishan</h1>
-<p>Forever Begins 💍</p>
-<button class="btn" onclick="start()">Enter</button>
-</div>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="three-canvas" id="threeContainer"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Sneha ❤️ Kishan</h1>
+            <p class="hero-subtitle">TWO HEARTS, ONE SOUL</p>
+            <p class="hero-tagline">Celebrating our love on April 25, 2026</p>
+            <div class="countdown" id="countdown"></div>
+        </div>
+    </section>
 
-<section>
-<h2>Events</h2>
-<div class="card">Haldi & Mehendi - 24 April</div>
-<div class="card">Wedding - 25 April</div>
-</section>
+    <!-- STORY SECTION -->
+    <section id="story">
+        <h2 class="section-title">Our Love Story</h2>
+        <div class="story-content">
+            <div>
+                <div class="story-text">
+                    <h3>✨ The Beginning</h3>
+                    <p>In the heart of Delhi's bustling streets, two souls were destined to meet. Sneha, with her luminous smile, infectious laughter, and compassionate spirit, crossed paths with Kishan, whose gentle nature, unwavering love, and protective demeanor captured her heart instantly. What started as a simple conversation evolved into countless adventures, shared dreams, late-night conversations, and infinite moments of togetherness that made life worth living.</p>
+                    
+                    <h3>💫 The Journey</h3>
+                    <p>Through every season, every challenge, and every celebration, our bond only grew stronger. We discovered that true love isn't just about the perfect moments—it's about choosing each other every single day. It's about making each other laugh until our stomachs hurt, supporting each other's dreams, and creating a beautiful life together filled with warmth, trust, and unconditional love.</p>
 
-<section>
-<h2>Countdown</h2>
-<p id="countdown"></p>
-</section>
+                    <h3>💍 The Moment</h3>
+                    <p>Under a canopy of stars on a moonlit evening, surrounded by the beauty of nature, Kishan took Sneha's hand and asked the question that would change their lives forever. With tears of joy rolling down her face and her heart overflowing with emotion, Sneha said a resounding "Yes!" That beautiful, magical moment sealed their forever and marked the beginning of their greatest adventure yet.</p>
+                </div>
+            </div>
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=600&fit=crop" alt="Love Story" loading="lazy">
+            </div>
+        </div>
+    </section>
 
-<!-- GAME 1 -->
-<section>
-<h2>🎮 Click Love Game</h2>
-<button class="btn" onclick="score++">❤️</button>
-<p id="score">0</p>
-</section>
+    <!-- EVENTS SECTION -->
+    <section id="events">
+        <h2 class="section-title">Our Wedding Events</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-title">🎨 Haldi Ceremony</div>
+                <div class="event-date">April 24, 2026 • 10:00 AM</div>
+                <div class="event-details">
+                    A vibrant celebration of yellow! Join us as we perform the traditional haldi ceremony with music, dance, and joy. Blessed turmeric paste, golden vibes, and beautiful memories await!
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-title">💅 Mehendi Night</div>
+                <div class="event-date">April 24, 2026 • 6:00 PM</div>
+                <div class="event-details">
+                    An evening of intricate designs, traditional music, and beautiful celebrations! Watch as the mehendi artists create magical patterns while we celebrate with dance, songs, and laughter.
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-title">💍 Wedding Ceremony</div>
+                <div class="event-date">April 25, 2026 • 5:00 PM</div>
+                <div class="event-details">
+                    The moment we've been waiting for! Join us as we take our sacred vows, exchange rings, and begin our married life. A beautiful blend of traditions and modern romance awaits!
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-title">🎉 Grand Reception</div>
+                <div class="event-date">April 25, 2026 • 8:00 PM</div>
+                <div class="event-details">
+                    An elegant evening of celebration with sumptuous cuisine, fine wines, and entertainment! Dance with us, celebrate our love, and create unforgettable memories together.
+                </div>
+            </div>
+        </div>
+        <div class="event-card" style="margin-top: 3em; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(255, 107, 157, 0.1));">
+            <h3 style="color: var(--gold); margin-bottom: 1em; font-size: 1.8em;">📍 Venue Information</h3>
+            <p style="color: var(--light-gray); margin-bottom: 1em; font-size: 1.1em;"><strong style="color: var(--gold);">The Grandeur Palace Delhi</strong></p>
+            <p style="color: var(--light-gray); margin-bottom: 1em; font-size: 1em;">New Delhi, India</p>
+            <p style="color: var(--light-gray); line-height: 1.8; font-size: 0.95em;">
+                A luxurious five-star venue with breathtaking Mughal architecture, sprawling manicured gardens, world-class hospitality, and state-of-the-art facilities. The perfect setting for our celebration of love. <br><br>
+                <strong style="color: var(--accent);">📞 Contact:</strong> +91 (011) XXXX XXXX<br>
+                <strong style="color: var(--accent);">🌐 Website:</strong> www.grandeurpalace.com<br>
+                <strong style="color: var(--accent);">📧 Email:</strong> events@grandeurpalace.com
+            </p>
+        </div>
+    </section>
 
-<!-- GAME 2 -->
-<section>
-<h2>🎯 Catch the Heart</h2>
-<button id="moveBtn" class="btn" style="position:relative">💖 Catch Me</button>
-</section>
+    <!-- TESTIMONIALS SECTION -->
+    <section>
+        <h2 class="section-title">What People Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">
+                    "Sneha and Kishan are the most beautiful couple! Their love is infectious and their wedding will be absolutely magical!"
+                </div>
+                <div class="testimonial-author">- Priya & Arjun (Best Friends)</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">
+                    "We've never seen Sneha so happy. Kishan completes her in every way. Their wedding is going to be the event of the year!"
+                </div>
+                <div class="testimonial-author">- Sneha's Parents</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">
+                    "My son found his soulmate! We couldn't be happier for them. Sneha is like a daughter to us. What a wonderful union!"
+                </div>
+                <div class="testimonial-author">- Kishan's Mother</div>
+            </div>
+        </div>
+    </section>
 
-<!-- GAME 3 -->
-<section>
-<h2>❓ Couple Quiz</h2>
-<p>Who is more romantic?</p>
-<button class="btn" onclick="quiz('Sneha')">Sneha</button>
-<button class="btn" onclick="quiz('Kishan')">Kishan</button>
-<p id="quizResult"></p>
-</section>
+    <!-- GALLERY SECTION -->
+    <section id="gallery">
+        <h2 class="section-title">Our Beautiful Moments</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(0)">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=700&fit=crop" alt="Memory 1" loading="lazy">
+                <div class="gallery-overlay">
+                    <span style="font-size: 3em;">🔍</span>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(1)">
+                <img src="https://images.unsplash.com/photo-1537633552985-caf3828e440d?w=600&h=700&fit=crop" alt="Memory 2" loading="lazy">
+                <div class="gallery-overlay">
+                    <span style="font-size: 3em;">🔍</span>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <img src="https://images.unsplash.com/photo-1530268729831-4be0ea6fef1d?w=600&h=700&fit=crop" alt="Memory 3" loading="lazy">
+                <div class="gallery-overlay">
+                    <span style="font-size: 3em;">🔍</span>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(3)">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=700&fit=crop" alt="Memory 4" loading="lazy">
+                <div class="gallery-overlay">
+                    <span style="font-size: 3em;">🔍</span>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(4)">
+                <img src="https://images.unsplash.com/photo-1537633552985-caf3828e440d?w=600&h=700&fit=crop" alt="Memory 5" loading="lazy">
+                <div class="gallery-overlay">
+                    <span style="font-size: 3em;">🔍</span>
+                </div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(5)">
+                <img src="https://images.unsplash.com/photo-1530268729831-4be0ea6fef1d?w=600&h=700&fit=crop" alt="Memory 6" loading="lazy">
+                <div class="gallery-overlay">
+                    <span style="font-size: 3em;">🔍</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- GAME 4 -->
-<section>
-<h2>💘 Memory Tap</h2>
-<button class="btn" onclick="tapGame()">Tap Fast!</button>
-<p id="tapScore">0</p>
-</section>
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img class="lightbox-image" id="lightboxImage" src="" alt="" loading="lazy">
+            <button class="lightbox-nav lightbox-prev" onclick="previousImage()">❮</button>
+            <button class="lightbox-nav lightbox-next" onclick="nextImage()">❯</button>
+        </div>
+    </div>
 
-<script>
+    <!-- GAMES SECTION -->
+    <section id="games">
+        <h2 class="section-title">Love & Fun Games</h2>
+        <p style="text-align: center; color: var(--light-gray); margin-bottom: 3em; font-size: 1.15em;">Play interactive games, test your skills, and have fun! Each game has prizes! 🎮💝</p>
+        
+        <div class="games-container">
+            <div class="game-card">
+                <div class="game-icon">❤️</div>
+                <div class="game-title">Love Clicker</div>
+                <div class="game-desc">Click to count your love! Beat your high score!</div>
+                <button class="play-btn" onclick="openGame('loveClicker')">▶ Play Game</button>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-icon">🎯</div>
+                <div class="game-title">Catch Hearts</div>
+                <div class="game-desc">Catch the moving hearts before time runs out!</div>
+                <button class="play-btn" onclick="openGame('catchHearts')">▶ Play Game</button>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-icon">❓</div>
+                <div class="game-title">Couple Quiz</div>
+                <div class="game-desc">How well do you know Sneha & Kishan?</div>
+                <button class="play-btn" onclick="openGame('coupleQuiz')">▶ Play Game</button>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-icon">⚡</div>
+                <div class="game-title">Tap Speed</div>
+                <div class="game-desc">Tap as fast as you can in 10 seconds!</div>
+                <button class="play-btn" onclick="openGame('tapSpeed')">▶ Play Game</button>
+            </div>
 
-// Loader
-window.onload=()=>{ setTimeout(()=>{ loader.style.display='none'; },2000); }
+            <div class="game-card">
+                <div class="game-icon">🧩</div>
+                <div class="game-title">Memory Match</div>
+                <div class="game-desc">Match the pairs and remember the love!</div>
+                <button class="play-btn" onclick="openGame('memoryMatch')">▶ Play Game</button>
+            </div>
 
-function start(){ music.play(); window.scrollTo({top:window.innerHeight,behavior:'smooth'}); }
+            <div class="game-card">
+                <div class="game-icon">🎲</div>
+                <div class="game-title">Love Dice</div>
+                <div class="game-desc">Roll the dice and get your wedding fortune!</div>
+                <button class="play-btn" onclick="openGame('loveDice')">▶ Play Game</button>
+            </div>
+        </div>
+    </section>
 
-// Countdown
-let w = new Date("Apr 25, 2026").getTime();
-setInterval(()=>{
-let n=new Date().getTime(); let d=w-n;
-let day=Math.floor(d/(1000*60*60*24));
-let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-let m=Math.floor((d%(1000*60*60))/(1000*60));
-let s=Math.floor((d%(1000*60))/1000);
-countdown.innerHTML=`${day}d ${h}h ${m}m ${s}s`;
-},1000);
+    <!-- WISHES SECTION -->
+    <section id="wishes">
+        <h2 class="section-title">Send Your Wishes 💝</h2>
+        <div style="text-align: center; margin-bottom: 3em;">
+            <button class="surprise-btn" onclick="openWishModal()">✍️ Write Your Wish</button>
+        </div>
+        <div class="wish-cards" id="wishCards">
+            <!-- Wishes will be added here dynamically -->
+        </div>
+        <div style="text-align: center; margin-top: 3em; padding: 2em; background: rgba(212, 175, 55, 0.08); border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3);">
+            <p style="color: var(--light-gray); font-size: 1.1em;">No wishes yet, but your blessings will be cherished! 💕</p>
+        </div>
+    </section>
 
-// Game1
-let score=0;
-setInterval(()=>{ document.getElementById('score').innerText=score; },100);
+    <!-- SURPRISE SECTION -->
+    <section>
+        <h2 class="section-title">🎁 A Special Surprise for You</h2>
+        <div class="surprise-container">
+            <div class="surprise-content">
+                <div class="surprise-hidden" id="surpriseButton">
+                    <p style="color: var(--light-gray); font-size: 1.2em; margin-bottom: 2em;">Click the button below to reveal something special...</p>
+                    <button class="surprise-btn" onclick="revealSurprise()">✨ Reveal the Magic ✨</button>
+                </div>
 
-// Game2
-let btn=document.getElementById('moveBtn');
-btn.onmouseover=()=>{
-btn.style.left=Math.random()*300+'px';
-btn.style.top=Math.random()*200+'px';
-}
+                <div class="surprise-revealed" id="surpriseMessage">
+                    <div class="surprise-message">
+                        "Two hearts that beat as one. Two souls intertwined forever."
+                    </div>
+                    <div class="surprise-subtext">
+                        Thank you for being a part of our beautiful journey. Your love, blessings, and support mean everything to us. 
+                    </div>
+                    <div style="color: var(--accent); font-size: 1.3em; margin-top: 1.5em;">
+                        With all our love & gratitude,<br>
+                        <span style="color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.2em;">Sneha & Kishan</span>
+                    </div>
+                    <p style="color: var(--light-gray); margin-top: 2em; font-style: italic;">💍 April 25, 2026 💍</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-// Game3
-function quiz(ans){
-quizResult.innerText = ans=="Sneha" ? "Correct ❤️" : "Try Again 😄";
-}
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#story">Our Story</a>
+                <a href="#events">Events</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#games">Games</a>
+                <a href="#wishes">Wishes</a>
+            </div>
+            <div class="footer-text">
+                <p>&copy; 2026 Sneha ❤️ Kishan. All moments are precious and eternal.</p>
+                <p style="margin-top: 1em; font-size: 0.9em;">Created with ❤️ and a touch of magic ✨</p>
+            </div>
+        </div>
+    </footer>
 
-// Game4
-let tScore=0;
-function tapGame(){ tScore++; tapScore.innerText=tScore; }
+    <!-- CHATBOT -->
+    <div class="chatbot-icon" id="chatbotIcon" onclick="toggleChatbot()">
+        💬
+    </div>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            💕 Wedding Assistant
+            <button class="chatbot-close-btn" onclick="toggleChatbot()">×</button>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="message">
+                <div class="message-bubble bot">
+                    Hi there! 👋 I'm your wedding assistant. Ask me about the wedding details, events, venue, or anything else! How can I help? 💍✨
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()">→</button>
+        </div>
+    </div>
 
-// 3D
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:bg});
-renderer.setSize(window.innerWidth,window.innerHeight);
+    <!-- MODALS -->
+    <div class="modal" id="gameModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeGame()">×</button>
+            <div id="gameContent"></div>
+        </div>
+    </div>
 
-const geo=new THREE.TorusGeometry(10,2,16,100);
-const mat=new THREE.MeshStandardMaterial({color:0xffd700});
-const r1=new THREE.Mesh(geo,mat);
-const r2=new THREE.Mesh(geo,mat);
-r2.position.x=15;
-scene.add(r1,r2);
+    <div class="modal" id="rsvpModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeRSVP()">×</button>
+            <h2 style="color: var(--gold); margin-bottom: 1.5em; font-family: 'Playfair Display', serif; font-size: 2em;">RSVP to Our Wedding</h2>
+            <form class="rsvp-form">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests *</label>
+                    <select id="guests" required>
+                        <option value="">Select...</option>
+                        <option value="1">1 Guest</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4+ Guests</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="attending">Will you be attending? *</label>
+                    <select id="attending" required>
+                        <option value="">Select...</option>
+                        <option value="yes">Yes, I'll be there! 🎉</option>
+                        <option value="no">Sorry, can't make it</option>
+                        <option value="maybe">Maybe, will confirm soon</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dietary">Dietary Restrictions</label>
+                    <textarea id="dietary" placeholder="Any allergies or preferences?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="message">Special Message</label>
+                    <textarea id="message" placeholder="Write your wishes for us..."></textarea>
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="submit-btn" onclick="submitRSVP()">Submit RSVP</button>
+                    <button type="button" class="cancel-btn" onclick="closeRSVP()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-const light=new THREE.PointLight(0xffffff,1);
-light.position.set(20,20,20);
-scene.add(light);
+    <div class="modal" id="wishModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeWishModal()">×</button>
+            <h2 style="color: var(--gold); margin-bottom: 1.5em; font-family: 'Playfair Display', serif; font-size: 2em;">✍️ Write Your Wishes</h2>
+            <form class="rsvp-form">
+                <div class="form-group">
+                    <label for="wishName">Your Name *</label>
+                    <input type="text" id="wishName" required>
+                </div>
+                <div class="form-group">
+                    <label for="wishText">Your Wish or Message *</label>
+                    <textarea id="wishText" placeholder="Write your heartfelt wish for Sneha & Kishan..." required style="min-height: 150px;"></textarea>
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="submit-btn" onclick="submitWish()">Send Wish 💝</button>
+                    <button type="button" class="cancel-btn" onclick="closeWishModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-camera.position.z=40;
+    <!-- GALLERY IMAGES FOR LIGHTBOX -->
+    <div style="display: none;" id="galleryImages">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop">
+        <img src="https://images.unsplash.com/photo-1537633552985-caf3828e440d?w=800&h=600&fit=crop">
+        <img src="https://images.unsplash.com/photo-1530268729831-4be0ea6fef1d?w=800&h=600&fit=crop">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop">
+        <img src="https://images.unsplash.com/photo-1537633552985-caf3828e440d?w=800&h=600&fit=crop">
+        <img src="https://images.unsplash.com/photo-1530268729831-4be0ea6fef1d?w=800&h=600&fit=crop">
+    </div>
 
-function animate(){ requestAnimationFrame(animate); r1.rotation.x+=0.01; r2.rotation.y+=0.01; renderer.render(scene,camera);} animate();
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
 
-// Animation
-gsap.from("h1",{y:-100,opacity:0});
-gsap.from("section",{opacity:0,y:50,stagger:0.3});
+        // ============ PARTICLES ============
+        function createParticles() {
+            const container = document.getElementById('particleContainer');
+            const particleCount = window.innerWidth > 768 ? 30 : 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.bottom = Math.random() * 100 + 'vh';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
 
-</script>
+        // ============ MUSIC SYSTEM ============
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        let musicPlaying = false;
 
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let oscillator, gain;
+
+        function createMusicWave() {
+            try {
+                oscillator = audioContext.createOscillator();
+                gain = audioContext.createGain();
+                
+                oscillator.connect(gain);
+                gain.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.3);
+                
+                gain.gain.setValueAtTime(0, audioContext.currentTime);
+                gain.gain.linearRampToValueAtTime(0.08, audioContext.currentTime + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.8);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.8);
+            } catch(e) {}
+        }
+
+        musicToggle.addEventListener('click', () => {
+            musicPlaying = !musicPlaying;
+            if (musicPlaying) {
+                musicToggle.textContent = '🔊 Music';
+                createMusicWave();
+            } else {
+                musicToggle.textContent = '🔇 Mute';
+            }
+        });
+
+        document.addEventListener('click', () => {
+            if (!musicPlaying && audioContext.state === 'suspended') {
+                audioContext.resume();
+                musicPlaying = true;
+                createMusicWave();
+                musicToggle.textContent = '🔊 Music';
+            }
+        }, { once: true });
+
+        // ============ THREE.JS SETUP ============
+        let scene, camera, renderer, hearts = [], rings = [];
+
+        function initThreeScene() {
+            const container = document.getElementById('threeContainer');
+            if (!container) return;
+            
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+            camera.position.z = 5;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(width, height);
+            renderer.setClearColor(0x000000, 0);
+            renderer.shadowMap.enabled = true;
+            container.appendChild(renderer.domElement);
+
+            // Create floating hearts and rings
+            for (let i = 0; i < 4; i++) {
+                const geometry = new THREE.TetrahedronGeometry(0.4);
+                const material = new THREE.MeshPhongMaterial({
+                    color: 0xd4af37,
+                    emissive: 0xd4af37,
+                    emissiveIntensity: 0.6,
+                    shininess: 100
+                });
+                const heart = new THREE.Mesh(geometry, material);
+                heart.position.x = (Math.random() - 0.5) * 8;
+                heart.position.y = (Math.random() - 0.5) * 8;
+                heart.position.z = (Math.random() - 3) * 4;
+                heart.userData.speed = 0.002 + Math.random() * 0.004;
+                heart.castShadow = true;
+                scene.add(heart);
+                hearts.push(heart);
+            }
+
+            for (let i = 0; i < 3; i++) {
+                const geometry = new THREE.TorusGeometry(0.5, 0.2, 32, 32);
+                const material = new THREE.MeshPhongMaterial({
+                    color: 0xff6b9d,
+                    emissive: 0xff6b9d,
+                    emissiveIntensity: 0.5
+                });
+                const ring = new THREE.Mesh(geometry, material);
+                ring.position.x = (Math.random() - 0.5) * 8;
+                ring.position.y = (Math.random() - 0.5) * 8;
+                ring.position.z = (Math.random() - 3) * 4;
+                ring.userData.speed = 0.0015 + Math.random() * 0.003;
+                ring.castShadow = true;
+                scene.add(ring);
+                rings.push(ring);
+            }
+
+            // Add multiple lights for better 3D effect
+            const pointLight1 = new THREE.PointLight(0xd4af37, 1.2, 100);
+            pointLight1.position.set(5, 5, 5);
+            pointLight1.castShadow = true;
+            scene.add(pointLight1);
+
+            const pointLight2 = new THREE.PointLight(0xff6b9d, 0.8, 100);
+            pointLight2.position.set(-5, -5, 5);
+            scene.add(pointLight2);
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+            scene.add(ambientLight);
+
+            animate();
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            hearts.forEach((heart) => {
+                heart.rotation.x += heart.userData.speed;
+                heart.rotation.y += heart.userData.speed * 0.8;
+                heart.position.y += heart.userData.speed * 0.3;
+
+                if (heart.position.y > 6) {
+                    heart.position.y = -6;
+                }
+            });
+
+            rings.forEach((ring) => {
+                ring.rotation.x += ring.userData.speed;
+                ring.rotation.y += ring.userData.speed;
+                ring.rotation.z += ring.userData.speed * 0.5;
+                ring.position.y += ring.userData.speed * 0.4;
+
+                if (ring.position.y > 6) {
+                    ring.position.y = -6;
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('threeContainer');
+            if (container && renderer) {
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                renderer.setSize(width, height);
+            }
+        }
+
+        initThreeScene();
+
+        // ============ COUNTDOWN TIMER ============
+        function updateCountdown() {
+            const weddingDate = new Date('2026-04-25').getTime();
+            const now = new Date().getTime();
+            const difference = weddingDate - now;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            const countdownEl = document.getElementById('countdown');
+            if (countdownEl) {
+                countdownEl.innerHTML = `
+                    <div class="countdown-item">
+                        <div class="countdown-number">${days}</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number">${hours}</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number">${minutes}</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number">${seconds}</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                `;
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ============ GSAP ANIMATIONS ============
+        gsap.from('.hero-content', {
+            duration: 1.2,
+            opacity: 0,
+            y: 60,
+            delay: 0.6
+        });
+
+        gsap.utils.toArray('.story-content, .event-card, .gallery-item, .game-card, .testimonial-card').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 85%',
+                    end: 'top 15%',
+                    scrub: 1
+                },
+                opacity: 0,
+                y: 60,
+                duration: 1
+            });
+        });
+
+        // ============ LIGHTBOX ============
+        let currentImageIndex = 0;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const images = document.querySelectorAll('#galleryImages img');
+            document.getElementById('lightboxImage').src = images[index].src;
+            document.getElementById('lightbox').classList.add('active');
+            createMusicWave();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        function nextImage() {
+            const images = document.querySelectorAll('#galleryImages img');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.getElementById('lightboxImage').src = images[currentImageIndex].src;
+        }
+
+        function previousImage() {
+            const images = document.querySelectorAll('#galleryImages img');
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            document.getElementById('lightboxImage').src = images[currentImageIndex].src;
+        }
+
+        // ============ CHATBOT WITH CLAUDE API ============
+        const defaultResponses = {
+            'wedding': 'The wedding ceremony is on April 25, 2026 at 5:00 PM! 💍',
+            'date': 'Wedding: April 25, 2026 | Haldi & Mehendi: April 24, 2026 🎉',
+            'venue': 'The Grandeur Palace Delhi - a luxurious 5-star venue with stunning Mughal architecture! 🏰',
+            'location': 'The Grandeur Palace, New Delhi, India 📍',
+            'haldi': 'Haldi ceremony is April 24 at 10:00 AM - a vibrant celebration of yellow! 🎨',
+            'mehendi': 'Mehendi night is April 24 at 6:00 PM - intricate designs & beautiful celebrations! 💅',
+            'time': 'Wedding starts at 5:00 PM, Reception at 8:00 PM ⏰',
+            'dress': 'Traditional attire recommended! 👗',
+            'rsvp': 'Click the RSVP button to confirm your attendance! 📋',
+            'address': 'The Grandeur Palace, New Delhi, India 📍',
+            'events': 'We have Haldi, Mehendi, Wedding Ceremony, and Grand Reception! 🎉',
+            'default': 'I\'m here to help! Ask me about the wedding, venue, events, or anything else! 💕'
+        };
+
+        function toggleChatbot() {
+            document.getElementById('chatbotWindow').classList.toggle('active');
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            const chatMessages = document.getElementById('chatMessages');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.innerHTML = `<div class="message-bubble user">${escapeHtml(message)}</div>`;
+            chatMessages.appendChild(userMessage);
+
+            input.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Show typing indicator
+            const typingMessage = document.createElement('div');
+            typingMessage.className = 'message';
+            typingMessage.innerHTML = `<div class="message-bubble bot"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+            chatMessages.appendChild(typingMessage);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                // Try to use Claude API
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': 'YOUR_API_KEY_HERE', // User should provide their own key
+                        'anthropic-version': '2023-06-01'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-3-5-sonnet-20241022',
+                        max_tokens: 150,
+                        messages: [{
+                            role: 'user',
+                            content: `You are a helpful wedding assistant for Sneha & Kishan's wedding on April 25, 2026 at The Grandeur Palace, New Delhi. Answer this question briefly (max 2 sentences): ${message}`
+                        }]
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const botReply = data.content[0].text;
+                    typingMessage.innerHTML = `<div class="message-bubble bot">${escapeHtml(botReply)}</div>`;
+                } else {
+                    // Fallback to default responses if API fails
+                    let botReply = defaultResponses['default'];
+                    const lowerMessage = message.toLowerCase();
+                    for (let key in defaultResponses) {
+                        if (lowerMessage.includes(key)) {
+                            botReply = defaultResponses[key];
+                            break;
+                        }
+                    }
+                    typingMessage.innerHTML = `<div class="message-bubble bot">${escapeHtml(botReply)}</div>`;
+                }
+            } catch (error) {
+                // Use default responses
+                let botReply = defaultResponses['default'];
+                const lowerMessage = message.toLowerCase();
+                for (let key in defaultResponses) {
+                    if (lowerMessage.includes(key)) {
+                        botReply = defaultResponses[key];
+                        break;
+                    }
+                }
+                typingMessage.innerHTML = `<div class="message-bubble bot">${escapeHtml(botReply)}</div>`;
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ============ GAMES ============
+        let gameScores = JSON.parse(localStorage.getItem('gameScores')) || {
+            loveClicker: 0,
+            catchHearts: 0,
+            coupleQuiz: 0,
+            tapSpeed: 0,
+            memoryMatch: 0,
+            loveDice: 0
+        };
+
+        function openGame(gameName) {
+            const modal = document.getElementById('gameModal');
+            const gameContent = document.getElementById('gameContent');
+            
+            if (gameName === 'loveClicker') {
+                gameContent.innerHTML = `
+                    <h2 style="color: var(--gold); margin-bottom: 1.5em; font-family: 'Playfair Display', serif; font-size: 2em;">❤️ Love Clicker Game</h2>
+                    <p style="color: var(--light-gray); margin-bottom: 1.5em; font-size: 1.1em;">Click the heart as many times as you can! Your score: <span style="color: var(--accent); font-weight: 700;">${gameScores.loveClicker}</span></p>
+                    <div style="font-size: 6em; margin: 2em 0; cursor: pointer; user-select: none; transition: all 0.2s;" id="loveHeart" onclick="addLoveClick()">❤️</div>
+                    <div style="text-align: center; font-size: 2.5em; color: var(--gold); margin: 2em 0; font-weight: 900;">
+                        <span id="loveScore">${gameScores.loveClicker}</span>
+                    </div>
+                    <div style="display: flex; gap: 1em;">
+                        <button class="surprise-btn" onclick="resetLoveClicker()">Reset Score</button>
+                        <button class="surprise-btn" onclick="closeGame()">Close Game</button>
+                    </div>
+                `;
+            } else if (gameName === 'catchHearts') {
+                gameContent.innerHTML = `
+                    <h2 style="color: var(--gold); margin-bottom: 1.5em; font-family: 'Playfair Display', serif; font-size: 2em;">🎯 Catch the Hearts!</h2>
+                    <div style="display: flex; justify-content: space-around; margin-bottom: 2em; font-size: 1.2em; color: var(--light-gray);">
+                        <div>⏱️ Time: <span id="catchTime" style="color: var(--gold); font-weight: 700;">30</span>s</div>
+                        <div>🎯 Score: <span id="catchScore" style="color: var(--accent); font-weight: 700;">0</span></div>
+                    </div>
+                    <div style="position: relative; width: 100%; height: 350px; background: rgba(212, 175, 55, 0.08); border: 3px solid var(--gold); border-radius: 20px; overflow: hidden; margin-bottom: 2em;" id="catchContainer">
+                        <div style="position: absolute; width: 60px; height: 60px; background: var(--accent); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 2.5em; transition: all 0.1s; box-shadow: 0 0 20px rgba(255, 107, 157, 0.5);" id="catchHeart" onclick="catchHeart()">❤️</div>
+                    </div>
+                    <div style="display: flex; gap: 1em;">
+                        <button class="surprise-btn" onclick="startCatchGame()">Start Game</button>
+                        <button class="surprise-btn" onclick="closeGame()">Close Game</button>
+                    </div>
+                `;
+            } else if (gameName === 'coupleQuiz') {
+                const quiz = [
+                    { q: 'In which city did Sneha & Kishan meet?', a: 'delhi' },
+                    { q: 'What is their wedding date?', a: '25 april' },
+                    { q: 'What is the venue name?', a: 'grandeur palace' }
+                ];
+                let quizIndex = Math.floor(Math.random() * quiz.length);
+
+                gameContent.innerHTML = `
+                    <h2 style="color: var(--gold); margin-bottom: 1.5em; font-family: 'Playfair Display', serif; font-size: 2em;">❓ Couple Quiz</h2>
+                    <div style="background: rgba(212, 175, 55, 0.1); padding: 2em; border-radius: 15px; margin-bottom: 2em; border: 1px solid rgba(212, 175, 55, 0.3);">
+                        <p style="color: var(--light-gray); margin-bottom: 1.5em; font-size: 1.2em;">${quiz[quizIndex].q}</p>
+                        <input type="text" id="quizAnswer" style="width: 100%; padding: 1em; border: 2px solid var(--gold); border-radius: 10px; background: rgba(212, 175, 55, 0.1); color: white; font-family: inherit; font-size: 1em;" placeholder="Your answer...">
+                        <div style="margin-top: 1.5em; font-size: 1em; color: var(--light-gray);">Your Score: <span style="color: var(--gold); font-weight: 700;">${gameScores.coupleQuiz}</span></div>
+                    </div>
+                    <div style="display: flex; gap: 1em;">
+                        <button class="surprise-btn" onclick="submitQuiz('${quiz[quizIndex].a}')" style="flex: 1;">Submit Answer</button>
+                        <button class="surprise-btn" onclick="closeGame()" style="flex: 1;">Close Game</button>
+                    </div>
+                `;
+            } else if (gameName === 'tapSpeed') {
+                gameContent.innerHTML = `
+                    <h2 style="color: var(--gold); margin-bottom: 1.5em; font-family: 'Playfair Display', serif; font-size: 2em;">⚡ Tap Speed Challenge</h2>
+                    <div style="font-size: 4em; margin: 2em 0; text-align: center;">⚡</div>
+                    <div style="margin-bottom: 2em; text-align: center;">
+                        <div style="color: var(--light-gray); margin-bottom: 1em; font-size: 1.2em;">Time Left: <span id="tapTime" style="color: var(--gold); font-weight: 700; font-size: 1.5em;">10</span>s</div>
+                        <div style="color: var(--light-gray); font-size: 1.2em;">Taps: <span id="tapCount" style="color: var(--accent); font-weight: 700; font-size: 1.5em;">0</span></div>
+                    </div>
+                    <div style="text-align: center; margin-bottom: 2em;">
+                        <button id="tapBtn" class="surprise-btn" onclick="tapButton()" style="padding: 2em 3em; font-size: 1.5em; width: 100%;">TAP ME!</button>
+                    </div>
+                    <div style="display: flex; gap: 1em;">
+                        <button class="surprise-btn" onclick="startTapGame()" style="flex: 1;">Start Game</button>
+                        <button class="surprise-btn" onclick="closeGame()" style="flex: 1;">Close Game</button>
+                    </div>
+                `;
+            } else if (gameName === 'memoryMatch') {
+                gameContent.innerHTML = `
+                    <h2 style="color: var(--gold); margin-bottom: 1.5em; font-family: 'Playfair Display', serif; font-size: 2em;">🧩 Memory Match Game</h2>
+                    <p style="color: var(--light-gray); margin-bottom: 2em; font-size: 1.1em;">Match all pairs to win! Your best: <span style="color: var(--accent); font-weight: 700;">${gameScores.memoryMatch}</span></p>
+                    <div id="memoryGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; margin-bottom: 2em;"></div>
+                    <div style="display: flex; gap: 1em;">
+                        <button class="surprise-btn" onclick="initMemoryGame()" style="flex: 1;">Start New Game</button>
+                        <button class="surprise-btn" onclick="closeGame()" style="flex: 1;">Close Game</button>
+                    </div>
+                `;
+                setTimeout(() => initMemoryGame(), 300);
+            } else if (gameName === 'loveDice') {
+                gameContent.innerHTML = `
+                    <h2 style="color: var(--gold); margin-bottom: 1.5em; font-family: 'Playfair Display', serif; font-size: 2em;">🎲 Love Dice Fortune</h2>
+                    <p style="color: var(--light-gray); margin-bottom: 2em; font-size: 1.1em;">Roll the dice to discover your wedding fortune!</p>
+                    <div style="font-size: 5em; margin: 2em 0; text-align: center;" id="diceDisplay">🎲</div>
+                    <div id="fortuneText" style="background: rgba(212, 175, 55, 0.1); padding: 2em; border-radius: 15px; margin-bottom: 2em; border: 1px solid rgba(212, 175, 55, 0.3); min-height: 80px; display: flex; align-items: center; justify-content: center; color: var(--light-gray); font-size: 1.1em; text-align: center;"></div>
+                    <div style="display: flex; gap: 1em;">
+                        <button class="surprise-btn" onclick="rollDice()" style="flex: 1;">Roll Dice</button>
+                        <button class="surprise-btn" onclick="closeGame()" style="flex: 1;">Close Game</button>
+                    </div>
+                `;
+            }
+
+            modal.classList.add('active');
+            createMusicWave();
+        }
+
+        function closeGame() {
+            document.getElementById('gameModal').classList.remove('active');
+        }
+
+        function addLoveClick() {
+            gameScores.loveClicker++;
+            document.getElementById('loveScore').textContent = gameScores.loveClicker;
+            document.getElementById('loveHeart').style.transform = 'scale(1.5) rotate(15deg)';
+            setTimeout(() => {
+                document.getElementById('loveHeart').style.transform = 'scale(1) rotate(0deg)';
+            }, 150);
+            localStorage.setItem('gameScores', JSON.stringify(gameScores));
+            createMusicWave();
+        }
+
+        function resetLoveClicker() {
+            gameScores.loveClicker = 0;
+            document.getElementById('loveScore').textContent = '0';
+            localStorage.setItem('gameScores', JSON.stringify(gameScores));
+            showNotification('Score Reset! ✨');
+        }
+
+        let catchGameRunning = false;
+        function startCatchGame() {
+            if (catchGameRunning) return;
+            catchGameRunning = true;
+            let time = 30;
+            let score = 0;
+            document.getElementById('catchScore').textContent = '0';
+            document.querySelector('#catchContainer button').disabled = true;
+
+            const timer = setInterval(() => {
+                time--;
+                document.getElementById('catchTime').textContent = time;
+                if (time <= 0) {
+                    clearInterval(timer);
+                    catchGameRunning = false;
+                    gameScores.catchHearts = Math.max(gameScores.catchHearts, score);
+                    localStorage.setItem('gameScores', JSON.stringify(gameScores));
+                    showNotification(`Game Over! Score: ${score} 🎉`);
+                }
+            }, 1000);
+
+            const moveHeart = () => {
+                if (!catchGameRunning) return;
+                const container = document.getElementById('catchContainer');
+                const heart = document.getElementById('catchHeart');
+                const x = Math.random() * (container.offsetWidth - 60);
+                const y = Math.random() * (container.offsetHeight - 60);
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+            };
+
+            window.catchHeart = () => {
+                if (!catchGameRunning) return;
+                score++;
+                document.getElementById('catchScore').textContent = score;
+                moveHeart();
+                createMusicWave();
+            };
+
+            moveHeart();
+        }
+
+        let tapGameRunning = false;
+        function startTapGame() {
+            if (tapGameRunning) return;
+            tapGameRunning = true;
+            let time = 10;
+            let taps = 0;
+            document.getElementById('tapCount').textContent = '0';
+            document.getElementById('tapBtn').disabled = false;
+
+            window.tapButton = () => {
+                if (!tapGameRunning) return;
+                taps++;
+                document.getElementById('tapCount').textContent = taps;
+                createMusicWave();
+            };
+
+            const timer = setInterval(() => {
+                time--;
+                document.getElementById('tapTime').textContent = time;
+                if (time <= 0) {
+                    clearInterval(timer);
+                    tapGameRunning = false;
+                    gameScores.tapSpeed = Math.max(gameScores.tapSpeed, taps);
+                    localStorage.setItem('gameScores', JSON.stringify(gameScores));
+                    document.getElementById('tapBtn').disabled = true;
+                    showNotification(`Amazing! ${taps} taps! 🚀`);
+                }
+            }, 1000);
+        }
+
+        function submitQuiz(answer) {
+            const userAnswer = document.getElementById('quizAnswer').value.trim().toLowerCase();
+            if (userAnswer === answer.toLowerCase()) {
+                gameScores.coupleQuiz++;
+                showNotification('Correct! 🎉');
+            } else {
+                showNotification(`The answer was: ${answer} 💡`);
+            }
+            localStorage.setItem('gameScores', JSON.stringify(gameScores));
+            closeGame();
+        }
+
+        function initMemoryGame() {
+            const pairs = ['💍', '❤️', '💕', '💫', '✨', '🌹', '💐', '🎀'];
+            let gameArray = [];
+            pairs.forEach(p => gameArray.push(p, p));
+            gameArray = gameArray.sort(() => Math.random() - 0.5);
+
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+            let flipped = [];
+
+            gameArray.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.style.cssText = `padding: 1.5em; background: rgba(212, 175, 55, 0.15); border: 2px solid var(--gold); border-radius: 10px; text-align: center; font-size: 2em; cursor: pointer; user-select: none; transition: all 0.3s;`;
+                card.textContent = '?';
+                card.dataset.emoji = emoji;
+                card.dataset.index = index;
+
+                card.onclick = () => {
+                    if (card.classList.contains('flipped') || flipped.length >= 2) return;
+                    
+                    card.textContent = emoji;
+                    card.classList.add('flipped');
+                    card.style.background = 'rgba(212, 175, 55, 0.25)';
+                    flipped.push(card);
+
+                    if (flipped.length === 2) {
+                        if (flipped[0].dataset.emoji === flipped[1].dataset.emoji) {
+                            setTimeout(() => {
+                                flipped = [];
+                            }, 300);
+                        } else {
+                            setTimeout(() => {
+                                flipped.forEach(c => {
+                                    c.textContent = '?';
+                                    c.classList.remove('flipped');
+                                    c.style.background = 'rgba(212, 175, 55, 0.15)';
+                                });
+                                flipped = [];
+                            }, 1000);
+                        }
+                    }
+                };
+
+                grid.appendChild(card);
+            });
+        }
+
+        function rollDice() {
+            const fortunes = [
+                "💕 Your love will last a thousand lifetimes!",
+                "✨ You two are destined to be together forever!",
+                "🌹 Every moment with your love is a blessing!",
+                "💫 Your bond is unbreakable and eternal!",
+                "🎉 Happiness will follow you everywhere!",
+                "💍 You've found your perfect match!"
+            ];
+
+            const dice = Math.floor(Math.random() * 6) + 1;
+            const diceEmojis = ['🎲', '①', '②', '③', '④', '⑤', '⑥'];
+            
+            document.getElementById('diceDisplay').textContent = diceEmojis[dice];
+            document.getElementById('fortuneText').textContent = fortunes[dice - 1];
+            
+            createMusicWave();
+        }
+
+        // ============ RSVP & WISH MODALS ============
+        function openRSVP() {
+            document.getElementById('rsvpModal').classList.add('active');
+            createMusicWave();
+        }
+
+        function closeRSVP() {
+            document.getElementById('rsvpModal').classList.remove('active');
+        }
+
+        function submitRSVP() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const attending = document.getElementById('attending').value;
+
+            if (!name || !email || !phone || !attending) {
+                showNotification('Please fill all required fields! ⚠️');
+                return;
+            }
+
+            showNotification(`Thank you ${name}! Your RSVP has been received! 💕`);
+            closeRSVP();
+            document.querySelector('.rsvp-form').reset();
+        }
+
+        function openWishModal() {
+            document.getElementById('wishModal').classList.add('active');
+            createMusicWave();
+        }
+
+        function closeWishModal() {
+            document.getElementById('wishModal').classList.remove('active');
+        }
+
+        function submitWish() {
+            const wishName = document.getElementById('wishName').value;
+            const wishText = document.getElementById('wishText').value;
+
+            if (!wishName || !wishText) {
+                showNotification('Please fill all fields! ⚠️');
+                return;
+            }
+
+            // Add wish to display
+            const wishCards = document.getElementById('wishCards');
+            const wishCard = document.createElement('div');
+            wishCard.className = 'wish-card';
+            wishCard.innerHTML = `
+                <div class="wish-author">👤 ${escapeHtml(wishName)}</div>
+                <div class="wish-text">"${escapeHtml(wishText)}"</div>
+            `;
+            wishCard.style.animation = 'slideInUp 0.5s ease-out';
+            
+            if (wishCards.querySelector('p')) {
+                wishCards.innerHTML = '';
+            }
+            wishCards.appendChild(wishCard);
+
+            showNotification(`Thank you! Your wish has been added! 💝`);
+            closeWishModal();
+            document.querySelector('.rsvp-form').reset();
+        }
+
+        // ============ SURPRISE SECTION ============
+        function revealSurprise() {
+            const button = document.getElementById('surpriseButton');
+            const message = document.getElementById('surpriseMessage');
+            
+            button.classList.add('hidden');
+            message.classList.add('visible');
+
+            gsap.from(message, {
+                duration: 1,
+                opacity: 0,
+                scale: 0.5,
+                rotationY: 180
+            });
+
+            createMusicWave();
+        }
+
+        // ============ NOTIFICATION ============
+        function showNotification(text) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = text;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+    </script>
 </body>
 </html>
