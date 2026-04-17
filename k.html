@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final Wedding Experience</title>
+
+<style>
+body{
+ margin:0;
+ font-family:Arial;
+ background:linear-gradient(135deg,#0a0e27,#1b1f3a);
+ color:white;
+ overflow-x:hidden;
+}
+
+header{
+ text-align:center;
+ padding:15px;
+ font-size:24px;
+ color:gold;
+}
+
+.card{
+ background:rgba(255,255,255,0.07);
+ margin:15px;
+ padding:15px;
+ border-radius:15px;
+ backdrop-filter:blur(10px);
+}
+
+button{
+ padding:10px 15px;
+ margin:5px;
+ border:none;
+ border-radius:10px;
+ cursor:pointer;
+ background:gold;
+ font-weight:bold;
+}
+
+/* RSVP */
+#rsvp{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,0.8);
+ justify-content:center;
+ align-items:center;
+}
+
+.box{
+ background:#111;
+ padding:20px;
+ border-radius:15px;
+ width:300px;
+}
+
+input{
+ width:100%;
+ padding:8px;
+ margin:5px 0;
+ border-radius:8px;
+ border:none;
+}
+
+/* LOVE */
+.bar{
+ height:15px;
+ background:#222;
+ border-radius:10px;
+ overflow:hidden;
+}
+.fill{
+ height:100%;
+ width:0%;
+ background:linear-gradient(90deg,pink,orange,gold);
+ transition:0.5s;
+}
+
+/* CONFETTI */
+.confetti{
+ position:fixed;
+ font-size:20px;
+ animation:fall 3s linear forwards;
+}
+@keyframes fall{
+ to{transform:translateY(100vh);opacity:0;}
+}
+
+@media(max-width:768px){
+ header{font-size:18px;}
+}
+</style>
+</head>
+
+<body>
+
+<header id="title">💍 Sneha & Kishan Wedding</header>
+
+<div class="card">
+<h3>🌐 Language</h3>
+<button onclick="lang('en')">English</button>
+<button onclick="lang('hi')">हिंदी</button>
+</div>
+
+<div class="card">
+<h3>💖 Love Meter</h3>
+<div class="bar"><div class="fill" id="love"></div></div>
+<button onclick="addLove()">Increase Love</button>
+</div>
+
+<div class="card">
+<h3>🎉 RSVP</h3>
+<button onclick="openRSVP()">Open RSVP</button>
+</div>
+
+<div class="card">
+<h3>📥 Wedding Card Download</h3>
+<button onclick="downloadCard()">Download Card (PNG)</button>
+</div>
+
+<div class="card">
+<h3>🤖 Mini Chatbot</h3>
+<input id="chat" placeholder="Ask something..." onkeydown="bot(event)">
+<p id="reply"></p>
+</div>
+
+<!-- RSVP -->
+<div id="rsvp">
+ <div class="box">
+  <h3>RSVP Form</h3>
+  <input id="name" placeholder="Name">
+  <input id="email" placeholder="Email">
+  <input id="guests" placeholder="Guests">
+
+  <button onclick="submit()">Submit</button>
+  <button onclick="closeRSVP()">Close</button>
+ </div>
+</div>
+
+<script>
+
+let love=0;
+
+/* LANGUAGE */
+function lang(l){
+ if(l==="hi"){
+  document.getElementById("title").innerText="💍 Sneha aur Kishan ki Shaadi";
+ } else {
+  document.getElementById("title").innerText="💍 Sneha & Kishan Wedding";
+ }
+}
+
+/* LOVE */
+function addLove(){
+ love+=10;
+ if(love>100) love=100;
+ document.getElementById("love").style.width=love+"%";
+}
+
+/* RSVP */
+function openRSVP(){
+ document.getElementById("rsvp").style.display="flex";
+}
+
+function closeRSVP(){
+ document.getElementById("rsvp").style.display="none";
+}
+
+function submit(){
+ let n=document.getElementById("name").value;
+ if(!n){alert("Enter name");return;}
+ closeRSVP();
+ alert("RSVP Done 💍");
+ confetti();
+}
+
+/* CHATBOT */
+function bot(e){
+ if(e.key==="Enter"){
+  let v=e.target.value.toLowerCase();
+  let r="Nice ❤️";
+
+  if(v.includes("who")) r="Sneha & Kishan Wedding 💍";
+  if(v.includes("hi")) r="Hello ❤️ Welcome!";
+
+  document.getElementById("reply").innerText=r;
+ }
+}
+
+/* DOWNLOAD WEDDING CARD (CANVAS IMAGE) */
+function downloadCard(){
+ let c=document.createElement("canvas");
+ c.width=800; c.height=500;
+ let x=c.getContext("2d");
+
+ x.fillStyle="#0a0e27";
+ x.fillRect(0,0,800,500);
+
+ x.fillStyle="gold";
+ x.font="30px Arial";
+ x.fillText("💍 Wedding Invitation 💍",200,120);
+
+ x.fillStyle="white";
+ x.font="20px Arial";
+ x.fillText("Sneha & Kishan",300,200);
+ x.fillText("You are Invited ❤️",300,250);
+ x.fillText("Date: 25 April",300,300);
+
+ let a=document.createElement("a");
+ a.download="wedding_card.png";
+ a.href=c.toDataURL();
+ a.click();
+}
+
+/* CONFETTI */
+function confetti(){
+ for(let i=0;i<40;i++){
+  let d=document.createElement("div");
+  d.className="confetti";
+  d.innerHTML="🎉";
+  d.style.left=Math.random()*100+"vw";
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),3000);
+ }
+}
+
+</script>
+
+</body>
+</html>
